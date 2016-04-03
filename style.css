@@ -1,0 +1,125 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.view-area-3d {
+  box-sizing: border-box;
+  perspective: 1000px;
+  width: 100vw;
+  height: 300px;
+  border: red 1px dotted;
+  position:relative;
+}
+
+.cube {
+  left: 50%;
+  top: 50%;
+  transition: 2s linear;
+  /*transform: rotate3d(1,1,0,45deg);*/
+  transform-style: preserve-3d;
+}
+
+.cube:hover {
+  transform: rotate3d(1,1,1,300deg);
+  /*transform: rotateX(360deg);*/
+}
+
+.cube:hover .cube-2 {
+  transform: rotate3d(1,1,1,-600deg);
+  /*transform: rotateX(-360deg) rotateY(360deg);*/
+}
+
+.cube-1 {
+
+  animation: outer 10s linear infinite;
+  width: 100px;
+  height:100px;
+  position: relative;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+
+.cube-2 {
+   animation: inner 10s linear infinite;
+  margin-top: -10px;
+  margin-left: -10px;
+  position:absolute;
+  right: 10%;
+  width: 20px;
+  height:20px;
+
+}
+
+.face {
+  background-color: rgba(250,0,0,.5);
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px black solid;
+}
+
+
+.cube-2 .face {
+  background-color: rgba(0,0,250,.5);
+  width: 20px;
+  height:20px;
+  /*z-index:-1;*/
+}
+
+.cube-1 >.face-front {
+  transform: translateZ(-50px);
+}
+.cube-1 >.face-rear{
+  transform: translateZ(50px) rotateX(180deg);
+}
+.cube-1 >.face-left {
+  transform: translateX(-50px) rotateY(90deg)
+}
+.cube-1 >.face-right{
+  transform: translateX(50px) rotateY(-90deg);
+}
+.cube-1 >.face-top {
+  transform: translateY(-50px) rotateX(90deg);
+}
+.cube-1 >.face-bottom{
+  transform: translateY(50px) rotateX(-90deg);
+}
+.cube-2 >.face-rear{
+  transform: translateZ(10px) rotateX(180deg);
+}
+.cube-2 >.face-front {
+  transform: translateZ(-10px);
+}
+.cube-2 >.face-left {
+  transform: translateX(-10px) rotateY(90deg)
+}
+.cube-2 >.face-right{
+  transform: translateX(10px) rotateY(-90deg);
+}
+.cube-2 >.face-top {
+  transform: translateY(-10px) rotateX(90deg);
+}
+.cube-2 >.face-bottom{
+  transform: translateY(10px) rotateX(-90deg);
+}
+
+@keyframes outer{
+  from{
+    transform: rotate3d(0,0,0,0deg)
+  }
+  to {
+    transform: rotate3d(1,1,0,360deg);
+  }
+
+}
+@keyframes inner{
+    from{
+    transform: rotate3d(0,0,0,0deg)
+  }
+  to {
+    transform: rotate3d(1,0,0,-360deg) ;
+  }
+
+}
